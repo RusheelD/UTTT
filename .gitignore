@@ -1,0 +1,22 @@
+# Node/JS
+node_modules/
+dist/
+.parcel-cache/
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# General
+.DS_Store
+Thumbs.db
+*.log
