@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Ultimate Tic Tac Toe</h1>
+    </header>
+    <main class="app">
+      <section class="status-panel" aria-live="polite">
+        <div id="status" class="status"></div>
+        <div id="thinking" class="thinking" hidden>AI is thinking</div>
+      </section>
+      <section class="board-section">
+        <div id="board" class="board" role="grid" aria-label="Ultimate Tic Tac Toe board"></div>
+      </section>
+      <section class="controls" aria-label="Game controls">
+        <button id="new-game" type="button" class="control-button">New Game</button>
+        <label for="mode-select">Mode</label>
+        <select id="mode-select" class="control-select">
+          <option value="single">Single Player</option>
+          <option value="local">Local Multiplayer</option>
+        </select>
+      </section>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
