@@ -131,7 +131,7 @@ function getStatusText(state, isThinking) {
     return `Current player: ${state.currentPlayer} (AI thinking)`;
   }
   if (state.activeBoardIndex === null) {
-    return `Current player: ${state.currentPlayer}  Free move`;
+    return `Current player: ${state.currentPlayer} - Free move`;
   }
-  return `Current player: ${state.currentPlayer}  Active board ${state.activeBoardIndex + 1}`;
+  return `Current player: ${state.currentPlayer} - Active board ${state.activeBoardIndex + 1}`;
 }
