@@ -133,21 +133,26 @@ body {
   font-size: clamp(1.4rem, 3vw, 2.4rem);
   font-weight: 600;
   color: inherit;
-  background: #1f2937;
+  background: var(--panel-raised);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
 }
 
 .cell:hover:not(:disabled) {
-  background: #273449;
+  background: var(--panel-hover);
   transform: translateY(-1px);
+}
+
+.cell:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .cell:disabled {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .controls {
@@ -158,25 +163,41 @@ body {
   flex-wrap: wrap;
 }
 
+.controls label {
+  font-weight: 600;
+}
+
 .control-button,
 .control-select {
   border-radius: 999px;
   border: 1px solid var(--border);
   padding: 10px 18px;
-  background: #1f2937;
+  background: var(--panel-raised);
   color: inherit;
   font-weight: 600;
+  min-height: 44px;
 }
 
 .control-button {
   cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .control-button:hover {
-  background: #273449;
+  background: var(--panel-hover);
+}
+
+.control-button:focus-visible,
+.control-select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 @media (max-width: 600px) {
+  .app {
+    padding: 12px;
+  }
+
   .board {
     gap: 10px;
   }
@@ -184,5 +205,13 @@ body {
   .sub-board {
     gap: 4px;
     padding: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
