@@ -2,10 +2,16 @@
   color-scheme: light dark;
   --bg: #0f172a;
   --panel: #111827;
+  --panel-raised: #1f2937;
+  --panel-hover: #273449;
   --text: #e2e8f0;
   --accent: #38bdf8;
   --accent-2: #f472b6;
   --border: #334155;
+  --focus-ring: color-mix(in srgb, var(--accent), transparent 35%);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --shadow-active: 0 0 0 2px color-mix(in srgb, var(--accent), transparent 60%);
 }
 
 * {
@@ -22,6 +28,11 @@ body {
 .app-header {
   padding: 24px 16px 0;
   text-align: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 .app {
@@ -48,6 +59,17 @@ body {
   color: var(--accent);
 }
 
+.thinking::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
 .board-section {
   display: flex;
   justify-content: center;
@@ -67,14 +89,19 @@ body {
   gap: 6px;
   padding: 8px;
   border: 2px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background: var(--panel);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .sub-board.is-active {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent), transparent 60%);
+  box-shadow: var(--shadow-active);
+  transform: translateY(-2px);
+}
+
+.sub-board.is-active .cell:hover:not(:disabled) {
+  background: var(--panel-hover);
 }
 
 .sub-board.is-resolved {

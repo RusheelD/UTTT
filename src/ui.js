@@ -2,6 +2,8 @@
  * UI rendering and DOM utilities.
  */
 
+import { isBoardFull } from './winDetection.js';
+
 const elements = {
   board: null,
   status: null,
@@ -89,11 +91,19 @@ export function renderUI(state, { isThinking = false } = {}) {
   elements.status.textContent = getStatusText(state, isThinking);
   elements.thinking.hidden = !isThinking;
 
+  const forcedBoard =
+    state.activeBoardIndex !== null ? state.board.subBoards[state.activeBoardIndex] : null;
+  const isFreeMove =
+    state.activeBoardIndex === null ||
+    !forcedBoard ||
+    forcedBoard.result !== null ||
+    isBoardFull(forcedBoard.cells);
+
   state.board.subBoards.forEach((subBoard, subBoardIndex) => {
     const subBoardElement = elements.subBoards[subBoardIndex];
     const isPlayableSubBoard =
       subBoard.result === null &&
-      (state.activeBoardIndex === null || state.activeBoardIndex === subBoardIndex);
+      (isFreeMove || state.activeBoardIndex === subBoardIndex);
     const isActive = isPlayableSubBoard && !state.winner && !state.isDraw;
 
     subBoardElement.classList.toggle('is-active', isActive);
